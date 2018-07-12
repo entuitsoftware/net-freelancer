@@ -17,9 +17,11 @@ namespace NetFreelancer.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext dbContext;
 
         public AccountController()
         {
+            dbContext = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -162,6 +164,51 @@ namespace NetFreelancer.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+                // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult RegisterFreelancer()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/RegisterFreelancer
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterFreelancer(RegisterFreelancerViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    var freelancer = new Freelancer()
+                    {Id = Guid.NewGuid().ToString(),
+                    UserId = user.Id,
+                    City = model.City,
+                    Country = model.Country,
+                    Description = model.Description,
+                    ImageUrl = model.ImageUrl,
+                    Province = model.Province,
+                    ServiceCategory = model.ServiceCategory,
+                    VideoUrl = model.VideoUrl
+
+                    };
+                    dbContext.Freelancers.Add(freelancer);
+                    dbContext.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
                 }

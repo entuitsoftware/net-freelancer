@@ -214,16 +214,35 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FreelancersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
+    <Compile Include="DTO\FreelancerDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807111404157_InitialCreate.cs" />
+    <Compile Include="Migrations\201807111404157_InitialCreate.Designer.cs">
+      <DependentUpon>201807111404157_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807111446305_InitialCreate1.cs" />
+    <Compile Include="Migrations\201807111446305_InitialCreate1.Designer.cs">
+      <DependentUpon>201807111446305_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807112018303_Restructurefreelancers.cs" />
+    <Compile Include="Migrations\201807112018303_Restructurefreelancers.Designer.cs">
+      <DependentUpon>201807112018303_Restructurefreelancers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807112041248_Restructurefreelancers1.cs" />
+    <Compile Include="Migrations\201807112041248_Restructurefreelancers1.Designer.cs">
+      <DependentUpon>201807112041248_Restructurefreelancers1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ServiceProvider.cs" />
+    <Compile Include="Models\Freelancer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -232,6 +251,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\header.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -288,6 +308,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Payments\Return.cshtml" />
+    <Content Include="Views\Freelancers\Create.cshtml" />
+    <Content Include="Views\Freelancers\Delete.cshtml" />
+    <Content Include="Views\Freelancers\Details.cshtml" />
+    <Content Include="Views\Freelancers\Edit.cshtml" />
+    <Content Include="Views\Freelancers\Index.cshtml" />
+    <Content Include="Views\Account\RegisterFreelancer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -304,6 +330,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807111404157_InitialCreate.resx">
+      <DependentUpon>201807111404157_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807111446305_InitialCreate1.resx">
+      <DependentUpon>201807111446305_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807112018303_Restructurefreelancers.resx">
+      <DependentUpon>201807112018303_Restructurefreelancers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807112041248_Restructurefreelancers1.resx">
+      <DependentUpon>201807112041248_Restructurefreelancers1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
